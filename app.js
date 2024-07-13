@@ -28,7 +28,7 @@ exibirMensagemInicial();
         if(chute < numeroSecreto){
             exibirTextoNaTela('p', 'O número secreto é maior');
         }else{
-            exibirTextoNaTela('p', 'O número secreto é menor');
+            exibirTextoNaTela('p', 'O número secreto é menor ');
         }
     }
 
@@ -52,8 +52,8 @@ exibirMensagemInicial();
     
  }
  function exibirMensagemInicial(){
-    exibirTextoNaTela('h1', 'Jogo do número secreto');
-    exibirTextoNaTela('p', 'Escolha um número entre 1 e 10');
+    exibirTextoNaTela('h1', 'Jogo do número secreto por Rafael Vieira dos Santos');
+    exibirTextoNaTela('p', 'Escolha um número entre 1 e 10 Grupo Scape Room');
     document.getElementById('reiniciar').setAttribute('disabled', true);
  }
  function reiniciarJogo(){

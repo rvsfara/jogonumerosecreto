@@ -5,9 +5,14 @@ let tentativas = 1;
 function exibirTextoNaTela(tag, texto){
     let campo= document.querySelector(tag);
     campo.innerHTML = texto;
-    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
+    falarTextoNavegador(texto);
  }
 exibirMensagemInicial();
+/*
+function falarTexto(texto){
+    responsiveVoice.speak(texto, 'Brazilian Portuguese Female', {rate:1.2});
+}
+*/
  
  function verificarChute(){
     let chute = document.querySelector('input').value;
@@ -26,9 +31,11 @@ exibirMensagemInicial();
         limparCampo();
         //exibirTextoNaTela('h1', frase);
         if(chute < numeroSecreto){
-            exibirTextoNaTela('p', 'O número secreto é maior');
+            frase = "O número secreto é maior";
+            exibirTextoNaTela('p', frase);
         }else{
-            exibirTextoNaTela('p', 'O número secreto é menor ');
+            frase = "O número secreto é menor";
+            exibirTextoNaTela('p', frase);
         }
     }
 
@@ -52,9 +59,19 @@ exibirMensagemInicial();
     
  }
  function exibirMensagemInicial(){
-    exibirTextoNaTela('h1', 'Jogo do número secreto por Rafael Vieira dos Santos');
-    exibirTextoNaTela('p', 'Escolha um número entre 1 e 10 Grupo Scape Room');
+    exibirTextoNaTela('p', 'Para jogar, escolha um número entre 1 e 10');
     document.getElementById('reiniciar').setAttribute('disabled', true);
+ }
+ //segundo leitor de tela
+ function falarTextoNavegador(texto){
+     if ('speechSynthesis' in window) {
+        let utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = 'pt-BR'; 
+        utterance.rate = 1.2; 
+        window.speechSynthesis.speak(utterance); 
+    } else {
+        console.log("Web Speech API não suportada neste navegador.");
+    }
  }
  function reiniciarJogo(){
     numeroSecreto = gerarNumeroAleatorio();
